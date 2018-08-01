@@ -35,6 +35,7 @@ public class CustomFCMService extends FirebaseMessagingService {
 
     private void sendNotification(Map<String, String> dataMap) {
 
+        /* 링크에 값이 있으면 팝업으로 호출 */
         if (dataMap.get("link") != null && dataMap.get("link").length() > 0) {
             try {
                 AssetFileDescriptor afd = getAssets().openFd("www/assets/audio/click_on.mp3");
@@ -53,6 +54,7 @@ public class CustomFCMService extends FirebaseMessagingService {
             return;
         }
 
+        /* 기본푸시 */
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
