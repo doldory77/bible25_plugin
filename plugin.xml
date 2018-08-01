@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="com.sangs.plugin" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>customPlugin</name>
+    <js-module name="customPlugin" src="www/customPlugin.js">
+        <clobbers target="cordova.plugins.customPlugin" />
+    </js-module>
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="customPlugin">
+                <param name="android-package" value="com.sangs.plugin.CustomPlugin" />
+            </feature>
+        </config-file>
+        <config-file parent="/*" target="AndroidManifest.xml" />
+        <config-file parent="/manifest/application" target="AndroidManifest.xml">
+            <service android:name="com.sangs.plugin.CustomFCMService">
+                <intent-filter>
+                    <action android:name="com.google.firebase.MESSAGING_EVENT" />
+                </intent-filter>
+            </service>
+        </config-file>
+        <config-file parent="/manifest/application" target="AndroidManifest.xml">
+            <activity android:name="com.sangs.plugin.CustomPopup" android:theme="@android:style/Theme.Translucent">
+                <intent-filter>
+                    <action android:name="OPEN_ACTIVITY" />
+                    <category android:name="android.intent.category.DEFAULT" />
+                </intent-filter>
+            </activity>
+        </config-file>
+        <source-file src="src/android/CustomPlugin.java" target-dir="src/com/sangs/plugin" />
+        <source-file src="src/android/PluginResult.java" target-dir="src/com/sangs/plugin" />
+        <source-file src="src/android/CustomFCMService.java" target-dir="src/com/sangs/plugin" />
+        <source-file src="src/android/CustomPopup.java" target-dir="src/com/sangs/plugin" />
+        <source-file src="src/android/layout/layout_custom_popup.xml" target-dir="res/layout" />
+        <source-file src="src/android/drawable/custom_popup.xml" target-dir="res/drawable" />
+    </platform>
+    <platform name="ios">
+        <config-file parent="/*" target="config.xml">
+            <feature name="customPlugin">
+                <param name="ios-package" value="CustomPlugin" />
+            </feature>
+        </config-file>
+        <source-file src="src/ios/CustomPlugin.h" />
+        <source-file src="src/ios/CustomPlugin.m" />
+    </platform>
+</plugin>

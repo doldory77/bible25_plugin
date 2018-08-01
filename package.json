@@ -1,0 +1,17 @@
+{
+  "name": "com.sangs.plugin",
+  "version": "0.0.1",
+  "cordova": {
+    "id": "com.sangs.plugin",
+    "platforms": [
+      "android"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
